@@ -14,3 +14,7 @@ html, body {
 .bg-red {
   background: rgb(196,50,53);
 }
+
+latex-js {
+  width: 100%;
+}
