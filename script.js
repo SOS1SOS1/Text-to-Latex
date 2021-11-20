@@ -1,15 +1,29 @@
-var document = null;
+var file = null;
 
 function uploadImage() {
     document.getElementById('fileid').click();
 }
 
 var loadFile = function(event) {
-	// Display image
-	// var image = document.getElementById('output');
-	// image.src = URL.createObjectURL(event.target.files[0]);
 
-	// Getting file type
-	// event.target.files[0].type == "application/pdf"
-	// event.target.files[0].type == "image/jpeg"
+	var image = document.getElementById('inputImage');
+	var embed = document.getElementById('inputPDF');
+
+	if (file != null) {
+		// Clear last image/pdf display
+		image.src = "";
+		embed.src = "";
+		embed.style.height = "0%";
+	}
+
+	file = event.target.files[0];
+
+	if (file.type.substring(0, 5) == "image") {
+		// Display image
+		image.src = URL.createObjectURL(file);
+	} else {
+		// Display pdf
+		embed.src = URL.createObjectURL(file);
+		embed.style.height = "90%";
+	}
 };
