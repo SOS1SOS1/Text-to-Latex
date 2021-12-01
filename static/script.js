@@ -32,27 +32,27 @@ var loadFile = async function(event) {
 		embed.src = src;
 		embed.style.height = "90%";
 	}
-	
+
 	const reader = new FileReader();
 	let blob = await fetch(src).then(r => r.blob());
-	reader.readAsDataURL(blob); 
+	reader.readAsDataURL(blob);
 	reader.onloadend = async function() {
-		base64data = reader.result;     
+		base64data = reader.result;
 		console.log(base64data);
-		makeRequest(base64data);
+		makeRequest(base64data, file.type);
 	}
-	
+
 	document.getElementById('clear').disabled = false;
 
 };
 
-function makeRequest(base64data) {
+function makeRequest(base64data, filetype) {
 	fetch('/test', {
 		method: 'POST', // or 'PUT'
 		headers: {
 		  'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(base64data),
+		body: JSON.stringify({data: base64data, filetype: filetype}),
 	})
 	.then(function (response) {
 		return response.json();
