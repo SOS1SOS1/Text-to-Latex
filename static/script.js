@@ -3,7 +3,7 @@ var image = document.getElementById('inputImage');
 var embed = document.getElementById('inputPDF');
 
 function uploadImage() {
-    document.getElementById('fileid').click();
+	document.getElementById('fileid').click();
 }
 
 function clearFile() {
@@ -17,12 +17,14 @@ function clearFile() {
 
 function clearAndDisable() {
 	clearFile();
+	document.getElementById('fileid').value = '';
 	document.getElementById('clear').disabled = true;
 }
 
 var loadFile = async function(event) {
 	clearFile();
 	file = event.target.files[0];
+	console.log(file);
 	let src = URL.createObjectURL(file);
 	if (file.type.substring(0, 5) == "image") {
 		// Display image
@@ -33,20 +35,20 @@ var loadFile = async function(event) {
 		embed.style.height = "90%";
 	}
 	
+	// convert image src to base64data
 	const reader = new FileReader();
 	let blob = await fetch(src).then(r => r.blob());
 	reader.readAsDataURL(blob); 
 	reader.onloadend = async function() {
 		base64data = reader.result;     
-		console.log(base64data);
 		makeRequest(base64data);
 	}
 	
 	document.getElementById('clear').disabled = false;
-
 };
 
 function makeRequest(base64data) {
+	// make POST request to server
 	fetch('/test', {
 		method: 'POST', // or 'PUT'
 		headers: {
@@ -57,12 +59,11 @@ function makeRequest(base64data) {
 	.then(function (response) {
 		return response.json();
 	}).then(function (textObj) {
-		console.log('response:');
+		// render new LaTeX
 		var node = document.getElementById('containsMath');
 		MathJax.typesetClear([node]);
 		node.innerHTML = textObj.latex;
 		MathJax.typesetPromise([node]).then(() => {
-		// the new content is has been typeset
 		});
 	});
 }
