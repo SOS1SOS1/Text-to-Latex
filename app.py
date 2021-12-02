@@ -9,6 +9,7 @@ import torch
 import sys
 import json
 import pdf2image
+import random
 
 app = Flask(__name__)
 
@@ -39,6 +40,6 @@ def queryModel(blob):
         base64_decoded = base64.b64decode(b64data)
         image = Image.open(io.BytesIO(base64_decoded))
     image_np = np.array(image).astype(np.int) # note: could be RGB (3D np array) or Greyscale (2D array) depending on image format
-    latex = '\\[e^{-i\\pi} + 1 = 0\\]'
+    latex = ['\\[e^{-i\\pi} + 1 = 0\\]', '\\[\\frac{1}{2}\\]', '\\[h(x)\\cdot \\exp(\\eta^T t(x) - a(\\eta))\\]']
     # TODO: latex = call_model(image_np)
-    return latex
+    return latex[random.randint(0, 2)]
