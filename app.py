@@ -13,6 +13,7 @@ import random
 
 app = Flask(__name__)
 
+# let Flask see script.js changes without having to refresh cache. Solution taken from https://stackoverflow.com/a/54164514/15049751
 def dir_last_updated(folder):
     return str(max(os.path.getmtime(os.path.join(root_path, f))
                    for root_path, dirs, files in os.walk(folder)
@@ -25,12 +26,12 @@ def hello_world():
 @app.route('/test', methods=['POST'])
 def testfn():
     message = {'latex': queryModel(request.data)}
-    return jsonify(message)  # serialize and use JSON headers
+    return jsonify(message) 
 
 def queryModel(blob):
     raw_data = json.loads(blob.decode())
 
-    image = None;
+    image = None
     b64_start_index = raw_data['data'].find('base64') + len('base64,')
     b64data = raw_data['data'][b64_start_index:]
     if "pdf" in raw_data['filetype']:
