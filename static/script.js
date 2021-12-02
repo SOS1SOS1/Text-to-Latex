@@ -44,7 +44,7 @@ var loadFile = async function(event) {
 		console.log(base64data);
 		makeRequest(base64data, file.type);
 	}
-
+	
 	document.getElementById('clear').disabled = false;
 	
 	// displays loading animation
