@@ -10,11 +10,6 @@
     
     <link rel="stylesheet" href="main.css">
 
-    <script type="module">
-      import { LaTeXJSComponent } from "https://cdn.jsdelivr.net/npm/latex.js/dist/latex.mjs"
-      customElements.define("latex-js", LaTeXJSComponent)
-    </script>
-
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -41,33 +36,21 @@
                 <input id='fileid' type='file' accept="image/*, application/pdf" onchange="loadFile(event)" hidden/>
             </div>
             <div id="output" class="d-flex col-5 justify-content-md-center align-items-center" style="background-color: whitesmoke; text-align: center; flex-direction: column;">
-              <p>MathJax</p>
-              <p>
-                \[\alpha \beta \gamma \rho \sigma \delta \epsilon \]
-                
-                \[x^n + y^n = z^n\]
-
-                \[E=mc^2\]
-
-                \[\times \otimes \oplus \cup \cap \]
-              <p>
-              <p>----------------------------------</p>
-              <p>Latex.js</p>
-              <latex-js baseURL="https://cdn.jsdelivr.net/npm/latex.js/dist/">
-                \documentclass{article}
-            
-                \begin{document}
-                
-                \[\alpha \beta \gamma \rho \sigma \delta \epsilon \]
-                
-                \[x^n + y^n = z^n\]
-
-                \[E=mc^2\]
-
-                \[\times \otimes \oplus \cup \cap \]
-                
-                \end{document}
-              </latex-js>
+              <div id="loading" class="hide">
+                <div class="center">
+                  <div class="wave"></div>
+                  <div class="wave"></div>
+                  <div class="wave"></div>
+                  <div class="wave"></div>
+                  <div class="wave"></div>
+                  <div class="wave"></div>
+                  <div class="wave"></div>
+                  <div class="wave"></div>
+                  <div class="wave"></div>
+                  <div class="wave"></div>
+                </div>
+                <p style="padding-top: 10px;">Model Processing</p>
+              </div>
             </div>
         </div>
     </div>

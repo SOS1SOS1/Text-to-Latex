@@ -5,7 +5,6 @@ function uploadImage() {
 }
 
 var loadFile = function(event) {
-
 	var image = document.getElementById('inputImage');
 	var embed = document.getElementById('inputPDF');
 
@@ -26,4 +25,14 @@ var loadFile = function(event) {
 		embed.src = URL.createObjectURL(file);
 		embed.style.height = "90%";
 	}
+
+	// displays loading animation
+	document.getElementById('loading').classList.remove("hide");
+	setTimeout(displayLatex, 2000);
 };
+
+function displayLatex() {
+	// hides loading animation
+	document.getElementById('loading').classList.add("hide");
+}
+
