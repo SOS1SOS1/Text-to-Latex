@@ -34,27 +34,26 @@ var loadFile = async function(event) {
 		embed.src = src;
 		embed.style.height = "90%";
 	}
-	
 	// convert image src to base64data
 	const reader = new FileReader();
 	let blob = await fetch(src).then(r => r.blob());
-	reader.readAsDataURL(blob); 
+	reader.readAsDataURL(blob);
 	reader.onloadend = async function() {
-		base64data = reader.result;     
-		makeRequest(base64data);
+		base64data = reader.result;
+		makeRequest(base64data, file.type);
 	}
-	
+
 	document.getElementById('clear').disabled = false;
 };
 
-function makeRequest(base64data) {
+function makeRequest(base64data, filetype) {
 	// make POST request to server
 	fetch('/test', {
 		method: 'POST', // or 'PUT'
 		headers: {
 		  'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(base64data),
+		body: JSON.stringify({data: base64data, filetype: filetype}),
 	})
 	.then(function (response) {
 		return response.json();

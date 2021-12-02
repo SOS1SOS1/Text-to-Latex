@@ -6,6 +6,9 @@ import base64
 import io
 import numpy as np
 import torch
+import sys
+import json
+import pdf2image
 import random
 
 app = Flask(__name__)
@@ -25,10 +28,17 @@ def testfn():
     return jsonify(message)  # serialize and use JSON headers
 
 def queryModel(blob):
-    b64_start_index = blob.decode().find('base64') + len('base64,')
-    b64data = blob[b64_start_index:]
-    base64_decoded = base64.b64decode(b64data)
-    image = Image.open(io.BytesIO(base64_decoded))
+    raw_data = json.loads(blob.decode())
+
+    image = None;
+    b64_start_index = raw_data['data'].find('base64') + len('base64,')
+    b64data = raw_data['data'][b64_start_index:]
+    if "pdf" in raw_data['filetype']:
+        images = pdf2image.convert_from_bytes(base64.b64decode(b64data))
+        image = images[0]
+    else:
+        base64_decoded = base64.b64decode(b64data)
+        image = Image.open(io.BytesIO(base64_decoded))
     image_np = np.array(image).astype(np.int) # note: could be RGB (3D np array) or Greyscale (2D array) depending on image format
     latex = ['\\[e^{-i\\pi} + 1 = 0\\]', '\\[\\frac{1}{2}\\]', '\\[h(x)\\cdot \\exp(\\eta^T t(x) - a(\\eta))\\]']
     # TODO: latex = call_model(image_np)
