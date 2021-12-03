@@ -12,6 +12,11 @@ function clearFile() {
 	document.getElementById('run_and_clear').style.display = 'none';
 	document.getElementById('upload').style.display = 'inline-block';
 	document.getElementById('fileElem').value = '';
+	document.getElementById('containsMath').classList.add("hide");
+	document.getElementById('rendered').classList.add('hide');
+	document.getElementById('formulaLabel').classList.add('hide');
+	document.getElementById('formula').classList.add('hide');
+	document.getElementById('containsMath').classList.add("hide");
 }
 
 function loadFile(f) {
@@ -46,11 +51,18 @@ var runModel = async function() {
 	// displays loading animation and hides latex
 	document.getElementById('loading').classList.remove("hide");
 	document.getElementById('containsMath').classList.add("hide");
+	document.getElementById('rendered').classList.add('hide');
+	document.getElementById('formulaLabel').classList.add('hide');
+	document.getElementById('formula').classList.add('hide');
+	document.getElementById('containsMath').classList.add("hide");
 	setTimeout(displayLatex, 2000);
 };
 
 function displayLatex() {
 	// hides loading animation and displays latex
+	document.getElementById('rendered').classList.remove('hide');
+	document.getElementById('formulaLabel').classList.remove('hide');
+	document.getElementById('formula').classList.remove('hide');
 	document.getElementById('loading').classList.add("hide");
 	document.getElementById('containsMath').classList.remove("hide");
 }
@@ -69,6 +81,8 @@ function makeRequest(base64data, filetype) {
 		var node = document.getElementById('containsMath');
 		MathJax.typesetClear([node]);
 		node.innerHTML = textObj.latex;
+		var formulaElem = document.getElementById('formula');
+		formulaElem.innerHTML = textObj.latex;
 		MathJax.typesetPromise([node]).then(() => {
 		});
 	});

@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* model processing animation styles */
@@ -74,4 +75,9 @@ html, body {
 
 #drop-area.highlight {
   border-color: green;
+}
+
+#containsMath {
+  padding: 4px;
+  outline: solid green;
 }
