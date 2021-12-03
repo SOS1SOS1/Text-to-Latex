@@ -11,6 +11,7 @@ function clearFile() {
 	document.getElementById('inputPDF').style.display = 'none';
 	document.getElementById('run_and_clear').style.display = 'none';
 	document.getElementById('upload').style.display = 'inline-block';
+	document.getElementById('fileElem').value = '';
 }
 
 function loadFile(f) {
