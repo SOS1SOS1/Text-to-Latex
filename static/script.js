@@ -8,6 +8,7 @@ function clearFile() {
 	image.src = "";
 	embed.src = "";
 	embed.style.height = "0%";
+	document.getElementById('fileElem').value = '';
 	document.getElementById('inputPDF').style.display = 'none';
 	document.getElementById('run_and_clear').style.display = 'none';
 	document.getElementById('upload').style.display = 'inline-block';
