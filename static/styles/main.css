@@ -2,6 +2,7 @@ html, body {
     height: 100%;
 }
 
+/* model processing animation styles */
 .center {
   display: flex;
   justify-content: center;
@@ -59,10 +60,18 @@ html, body {
   opacity: 0%;
 }
 
+/* drag and drop styles */
+#drop-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed lightgray;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
 
-.box__dragndrop,
-.box__uploading,
-.box__success,
-.box__error {
-  display: none;
+#drop-area.highlight {
+  border-color: green;
 }
