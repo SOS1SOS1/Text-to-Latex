@@ -77,12 +77,28 @@ html, body {
   border-color: green;
 }
 
-#formula {
-  display: inline-block;
+#formulaRow {
   padding: 0.5em;
   background: #e0e0e0ff;
-  font-family: courier;
   box-shadow: 1px 1px 1px #b0b0b0ff;
+}
+
+#copyLatexButtonContainer {
+  margin: auto;
+}
+
+#copyLatexButton {
+  color: #404040ff;
+  cursor: pointer;
+}
+
+#copyLatexButton:hover {
+  color: #606060ff;
+}
+
+#formula {
+  font-family: courier;
+  border-right: 1px solid #c0c0c0ff;
 }
 
 .hide {
