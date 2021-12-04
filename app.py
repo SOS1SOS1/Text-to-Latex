@@ -11,6 +11,8 @@ import json
 import pdf2image
 import random
 
+from character_segmentation import get_latex
+
 app = Flask(__name__)
 
 # let Flask see script.js changes without having to refresh cache. Solution taken from https://stackoverflow.com/a/54164514/15049751
@@ -39,8 +41,8 @@ def queryModel(blob):
         image = images[0]
     else:
         base64_decoded = base64.b64decode(b64data)
-        image = Image.open(io.BytesIO(base64_decoded))
-    image_np = np.array(image).astype(np.int) # note: could be RGB (3D np array) or Greyscale (2D array) depending on image format
-    latex = ['\\[e^{-i\\pi} + 1 = 0\\]', '\\[\\frac{1}{2}\\]', '\\[h(x)\\cdot \\exp(\\eta^T t(x) - a(\\eta))\\]']
-    # TODO: latex = call_model(image_np)
-    return latex[random.randint(0, 2)]
+        image = Image.open(io.BytesIO(base64_decoded)).convert('RGB')
+    image_np = np.array(image).astype(np.uint8) # note: could be RGB (3D np array) or Greyscale (2D array) depending on image format
+    latex = ('\\[' + get_latex(image_np) + '\\]')
+    print(latex)
+    return latex
