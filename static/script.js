@@ -48,7 +48,6 @@ var runModel = async function() {
 	// displays loading animation and hides latex
 	document.getElementById('loading').classList.remove("hide");
 	document.getElementById('latexOutputContainer').classList.add("hide");
-	setTimeout(displayLatex, 2000);
 };
 
 function displayLatex() {
@@ -74,6 +73,7 @@ function makeRequest(base64data, filetype) {
 		var formulaElem = document.getElementById('formula');
 		formulaElem.innerHTML = textObj.latex;
 		MathJax.typesetPromise([node]).then(() => {
+			displayLatex();
 		});
 	});
 }
