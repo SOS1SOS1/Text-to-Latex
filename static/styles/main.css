@@ -77,7 +77,15 @@ html, body {
   border-color: green;
 }
 
-#containsMath {
-  padding: 4px;
-  outline: solid green;
+#formula {
+  display: inline-block;
+  padding: 0.5em;
+  background: #e0e0e0ff;
+  font-family: courier;
+  box-shadow: 1px 1px 1px #b0b0b0ff;
+}
+
+.hide {
+  height: 0px;
+  width: 0px;
 }

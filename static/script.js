@@ -13,11 +13,7 @@ function clearFile() {
 	document.getElementById('run_and_clear').style.display = 'none';
 	document.getElementById('upload').style.display = 'inline-block';
 	document.getElementById('fileElem').value = '';
-	document.getElementById('containsMath').classList.add("hide");
-	document.getElementById('rendered').classList.add('hide');
-	document.getElementById('formulaLabel').classList.add('hide');
-	document.getElementById('formula').classList.add('hide');
-	document.getElementById('containsMath').classList.add("hide");
+	document.getElementById('latexOutputContainer').classList.add("hide");
 }
 
 function loadFile(f) {
@@ -48,24 +44,17 @@ var runModel = async function() {
 		console.log(base64data);
 		makeRequest(base64data, file.type);
 	}
-		
+
 	// displays loading animation and hides latex
 	document.getElementById('loading').classList.remove("hide");
-	document.getElementById('containsMath').classList.add("hide");
-	document.getElementById('rendered').classList.add('hide');
-	document.getElementById('formulaLabel').classList.add('hide');
-	document.getElementById('formula').classList.add('hide');
-	document.getElementById('containsMath').classList.add("hide");
+	document.getElementById('latexOutputContainer').classList.add("hide");
 	setTimeout(displayLatex, 2000);
 };
 
 function displayLatex() {
 	// hides loading animation and displays latex
-	document.getElementById('rendered').classList.remove('hide');
-	document.getElementById('formulaLabel').classList.remove('hide');
-	document.getElementById('formula').classList.remove('hide');
+	document.getElementById('latexOutputContainer').classList.remove('hide');
 	document.getElementById('loading').classList.add("hide");
-	document.getElementById('containsMath').classList.remove("hide");
 }
 
 function makeRequest(base64data, filetype) {

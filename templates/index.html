@@ -48,11 +48,6 @@
               </div>
             </div>
             <div id="output" class="d-flex col-5 justify-content-md-center align-items-center" style="background-color: whitesmoke; text-align: center; flex-direction: column;">
-              <p id="rendered" class="hide">
-                <b>Rendered Formula</b> 
-              </p>
-              <p id="containsMath" class="hide">
-              </p>
               <div id="loading" class="hide">
                 <div class="center">
                   <div class="wave"></div>
@@ -68,11 +63,29 @@
                 </div>
                 <p style="padding-top: 10px;">Model Processing</p>
               </div>
-              <p id="formulaLabel" class="hide">
-                 <b>LaTeX</b>
-              </p>
-              <p id="formula" class="hide">
-              </p>
+              <div id="latexOutputContainer" class="container hide">
+                <p id="rendered">
+                  <b>Rendered Formula</b>
+                </p>
+                <p id="containsMath">
+                </p>
+                <p id="formulaLabel">
+                  <b>LaTeX</b>
+                </p>
+                <p id="formula">
+                </p>
+                <!--
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xs-6" id="formula">
+                    </div>
+                    <div class="col-xs-6">
+                      <i class="fas fa-copy" id="copyLatexButton"></i>
+                    </div>
+                  </div>
+                </div>
+                -->
+              </div>
             </div>
         </div>
     </div>
